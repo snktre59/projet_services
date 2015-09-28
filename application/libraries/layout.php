@@ -40,8 +40,10 @@ class Layout
         $this->ajouter_css("owl.theme");
         $this->ajouter_css("carousel-animate");
         $this->ajouter_css("theme");
+        //$this->ajouter_css("font-awesome.min");
 
         // JS
+        $this->ajouter_js("jquery-1.11.3.min");
         $this->ajouter_js("page/page.navbar-fixed-shrinked");
         $this->ajouter_js("bootstrap.min");
         $this->ajouter_js("owl.carousel");

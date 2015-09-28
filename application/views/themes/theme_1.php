@@ -147,20 +147,7 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Home</a>
-                <ul class="dropdown-menu dropdown-menu-left" role="menu">
-                  <li><a href="index.html">Default</a></li>
-                  <li><a href="home-bg-slider.html">Background Image Slider</a></li>
-                  <li><a href="home-video-bg.html">Video Background</a></li>
-                  <li><a href="home-browser-slider.html">Browser Slider</a></li>
-                  <li><a href="home-macbook-slider.html">Macbook Slider</a></li>
-                  <li><a href="home-filterable-portfolio.html">Filterable Portfolio</a></li>
-                  <li><a href="home-application.html">Application</a></li>
-                  <li><a href="home-personal-portfolio.html">Personal Portfolio</a></li>
-                  <li><a href="home-personal-portfolio-option-2.html">Personal Portfolio</a></li>
-                  <li><a href="home-one-page.html">One Page</a></li>
-                  <li><a href="home-photographer.html">Photographer</a></li>
-                </ul>
+                <a href="index.html#" role="button" aria-expanded="false">Accueil</a>
               </li>
 
               <li class="dropdown">
@@ -456,20 +443,8 @@
                 </ul>
               </li>
 
-              <li class="dropdown">
-                <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Portfolio</a>
-                <ul class="dropdown-menu dropdown-menu-left" role="menu">
-                  <li><a href="portfolio-item.html">Portfolio Item</a></li>
-                  <li><a href="portfolio-4-column.html">4 Column</a></li>
-                  <li><a href="portfolio-3-column.html">3 Column</a></li>
-                  <li><a href="portfolio-2-column.html">2 Column</a></li>
-                  <li><a href="portfolio-fluid-full-4-column.html">Fluid Full 4 Column</a></li>
-                  <li><a href="portfolio-fluid-full-3-column.html">Fluid Full 3 Column</a></li>
-                  <li><a href="portfolio-fluid-full-2-column.html">Fluid Full 2 Column</a></li>
-                  <li><a href="portfolio-fluid-4-column.html">Fluid 4 Column</a></li>
-                  <li><a href="portfolio-fluid-3-column.html">Fluid 3 Column</a></li>
-                  <li><a href="portfolio-fluid-2-column.html">Fluid 2 Column</a></li>
-                </ul>
+              <li>
+                <a href="index.html#" role="button" aria-expanded="false">Contact</a>
               </li>
 
               <li class="li-search">
@@ -516,7 +491,7 @@
             </div>
           </div>
           <div class="col-sm-2 col-sm-offset-1 col-xs-6">
-            <h3 class="text-theme title-sm hr-left">Home</h3>
+            <h3 class="text-theme title-sm hr-left">Accueil</h3>
             <ul class="list-unstyled text-theme">
               <li><a href="home-macbook-slider.html">Macbook Slider</a></li>
               <li><a href="home-filterable-portfolio.html">Filterable Portfolio</a></li>
@@ -563,8 +538,6 @@
       </div>
     </div>
   </div>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   
   <!-- javascript -->
     <?php foreach($js as $url): ?>
