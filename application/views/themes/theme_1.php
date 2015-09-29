@@ -59,8 +59,8 @@
                               <input type="password" class="form-control" placeholder="Password">
                             </div>
                           </div>
-                          <button type="submit" class="btn btn-primary text-theme-xs mr-8">Login</button>
-                          <a href="index.html#" class="text-theme-xs pull-right a-black">Forgot your password ?</a>
+                          <button type="submit" class="btn btn-primary text-theme-xs mr-8">Connexion</button>
+                          <a href="index.html#" class="text-theme-xs pull-right a-black">Mot de passe oublié ?</a>
                         </form>
                       </div>
                     </div>
