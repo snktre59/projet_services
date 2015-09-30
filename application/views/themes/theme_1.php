@@ -42,21 +42,21 @@
               <div class="col-sm-7 col-xs-12">
                 <div class="pull-right">
                   <div class="dropdown dropdown-login pull-left">
-                    <button class="btn-menu-top" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Log in</button>
+                    <button class="btn-menu-top" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Connexion</button>
                     <div class="dropdown-menu dropdown-menu-right stop-prop" role="menu" aria-labelledby="dLabel">
                       <div class="wrapper-form-box">
-                        <h3>Log In</h3>
+                        <h3>Connexion</h3>
                         <form>
                           <div class="form-group">
                             <div class="input-group">
                               <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                              <input type="text" class="form-control" placeholder="Username">
+                              <input type="text" class="form-control" placeholder="Identifiant">
                             </div>
                           </div>
                           <div class="form-group">
                             <div class="input-group">
                               <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                              <input type="password" class="form-control" placeholder="Password">
+                              <input type="password" class="form-control" placeholder="Mot de passe">
                             </div>
                           </div>
                           <button type="submit" class="btn btn-primary text-theme-xs mr-8">Connexion</button>
@@ -147,7 +147,7 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="index.html#" role="button" aria-expanded="false">Accueil</a>
+                <a href="<?php echo base_url()."accueil/index"; ?>" role="button" aria-expanded="false">Accueil</a>
               </li>
 
               <li class="dropdown">
