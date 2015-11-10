@@ -17,6 +17,6 @@ Technologies utilisées
 -  PHP 5
 -  HTML 5
 -  CSS 3
--  Framework CodeIgniter 3.0.2 (MVC) Documentation (en anglais) : <http://www.codeigniter.com/user_guide/>
+-  Framework CodeIgniter 3.0.2 (MVC) Documentation (en anglais) : http://www.codeigniter.com/user_guide/
 -  jQuery
 
