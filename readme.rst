@@ -14,9 +14,9 @@ Les objectifs de notre projet d’initiative seraient donc de créer une cohési
 Technologies utilisées
 *******************
 
--  `PHP 5`_
--  `HTML 5`_
--  `CSS 3`_
--  `Framework CodeIgniter 3.0.2 (MVC) Documentation (en anglais) : <http://www.codeigniter.com/user_guide/>`_
--  `jQuery`_
+-  PHP 5
+-  HTML 5
+-  CSS 3
+-  Framework CodeIgniter 3.0.2 (MVC) Documentation (en anglais) : <http://www.codeigniter.com/user_guide/>
+-  jQuery
 
