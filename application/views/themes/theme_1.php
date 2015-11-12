@@ -45,7 +45,7 @@
                     <button class="btn-menu-top" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Connexion</button>
                     <div class="dropdown-menu dropdown-menu-right stop-prop" role="menu" aria-labelledby="dLabel">
                       <div class="wrapper-form-box">
-                        <h3>Connexion</h3>
+                        <h3>Log </h3>
                         <form>
                           <div class="form-group">
                             <div class="input-group">
@@ -540,6 +540,7 @@
   </div>
   
   <!-- javascript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <?php foreach($js as $url): ?>
         <script type="text/javascript" src="<?php echo $url; ?>"></script> 
     <?php endforeach; ?>

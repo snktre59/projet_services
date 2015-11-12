@@ -44,8 +44,8 @@ class Layout
 
         // JS
         $this->ajouter_js("jquery-1.11.3.min");
-        $this->ajouter_js("page/page.navbar-fixed-shrinked");
         $this->ajouter_js("bootstrap.min");
+        $this->ajouter_js("page/page.navbar-fixed-shrinked");
         $this->ajouter_js("owl.carousel");
         $this->ajouter_js("jquery-magnific-popup");
         $this->ajouter_js("jquery.waypoints");
