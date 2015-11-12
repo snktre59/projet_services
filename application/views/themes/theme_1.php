@@ -140,7 +140,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><span class="logo-circle"><span class="logo-circle-outer"></span></span><img class="img-responsive" src="<?php echo img_url("logo/logo-default.png", "theme-img"); ?>"></a>
+            <a class="navbar-brand" href="index.html"><img class="img-responsive" src="<?php echo img_url("logo/logo.png", "theme-img"); ?>"><span style="display: inline-block;">Troc'It Easy</span></a>
           </div>
 
           <div id="navbar" class="navbar-collapse collapse">

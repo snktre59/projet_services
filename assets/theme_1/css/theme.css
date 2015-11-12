@@ -767,6 +767,8 @@ label {
 .navbar-brand > img {
     display: block;
     height: 92px;
+	display: inline-block;
+	margin-bottom: 5px;
 }
 
 @media (max-width: 767px) {
@@ -1568,6 +1570,7 @@ form.nav-search > input:focus {
 #header .navbar-default form.nav-search > input {
     color: #3d3d3d;
     background-color: #fff;
+	right: -171px;
 }
 
 
