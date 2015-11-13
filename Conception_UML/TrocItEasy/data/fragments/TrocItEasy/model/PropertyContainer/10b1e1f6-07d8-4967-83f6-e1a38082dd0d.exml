@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="TrocItEasy" version="4">
+  <OBJECT>
+    <ID name="TrocItEasy" mc="Standard.PropertyContainer" uid="10b1e1f6-07d8-4967-83f6-e1a38082dd0d"/>
+    <PID name="TrocItEasy" mc="Standard.AnalystProject" uid="4ba70711-93b6-4196-8180-dc4455f30efb"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[TrocItEasy]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>
