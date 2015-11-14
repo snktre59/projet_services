@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Jeu 12 Novembre 2015 à 20:10
+-- Généré le :  Sam 14 Novembre 2015 à 11:43
 -- Version du serveur :  5.5.42
 -- Version de PHP :  5.6.10
 
@@ -19,14 +19,27 @@ USE `trocItEasy`;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Note`
+-- Structure de la table `annonce`
 --
 
-CREATE TABLE `Note` (
-  `idNote` smallint(5) unsigned NOT NULL COMMENT 'ID de la note',
-  `idUtilisateur` smallint(5) unsigned NOT NULL COMMENT 'ID de l''utilisateur publiant la note',
-  `idProduitService` smallint(5) unsigned NOT NULL COMMENT 'ID du produit/service noté',
-  `note` enum('1','2','3','4','5') NOT NULL COMMENT 'note'
+CREATE TABLE `annonce` (
+  `id` smallint(6) unsigned NOT NULL,
+  `idUtilisateur` smallint(6) unsigned NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `type` enum('BIEN','SERVICE') NOT NULL,
+  `prix` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie`
+--
+
+CREATE TABLE `categorie` (
+  `id` smallint(6) NOT NULL,
+  `nom` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -36,34 +49,42 @@ CREATE TABLE `Note` (
 --
 
 CREATE TABLE `commentaire` (
-  `idCommentaire` smallint(5) unsigned NOT NULL COMMENT 'ID du commentaire',
-  `idUtilisateur` smallint(5) unsigned NOT NULL COMMENT 'ID de l''utilisateur qui publie le commentaire',
-  `idProduitService` smallint(5) unsigned NOT NULL COMMENT 'ID du produit/service',
-  `commentaire` text NOT NULL COMMENT 'Texte du commentaire'
+  `id` smallint(6) unsigned NOT NULL,
+  `commentaire` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `produit_service`
+-- Structure de la table `note`
 --
 
-CREATE TABLE `produit_service` (
-  `idProduitService` smallint(5) unsigned NOT NULL COMMENT 'ID du Produit/Service',
-  `nom` varchar(100) NOT NULL COMMENT 'Nom',
-  `description` text NOT NULL COMMENT 'Description',
-  `type` enum('SERVICE','PRODUIT') NOT NULL COMMENT 'Type (Produit ou Service)'
+CREATE TABLE `note` (
+  `id` smallint(6) NOT NULL,
+  `idAnnonce` smallint(6) unsigned NOT NULL,
+  `note` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tag`
+-- Structure de la table `tagCategorie`
 --
 
-CREATE TABLE `tag` (
-  `idTag` smallint(5) unsigned NOT NULL COMMENT 'ID du tag',
-  `nom` varchar(20) NOT NULL COMMENT 'Nom du tag'
+CREATE TABLE `tagCategorie` (
+  `id` smallint(6) NOT NULL,
+  `nom` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tagNote`
+--
+
+CREATE TABLE `tagNote` (
+  `id` smallint(6) NOT NULL,
+  `nom` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -78,6 +99,7 @@ CREATE TABLE `utilisateur` (
   `prenom` varchar(30) NOT NULL COMMENT 'Prénom',
   `adresseEmail` varchar(60) NOT NULL COMMENT 'Adresse email de connexion',
   `motDePasse` varchar(40) NOT NULL COMMENT 'Mot de passe',
+  `credit` int(10) NOT NULL,
   `registrationDate` datetime NOT NULL COMMENT 'Date d''inscription',
   `lastLoginDate` datetime NOT NULL COMMENT 'Date de dernière connexion',
   `groupe` enum('UTILISATEUR','ADMINISTRATEUR','WEBMASTER') NOT NULL COMMENT 'Groupe d''utilisateurs',
@@ -89,28 +111,42 @@ CREATE TABLE `utilisateur` (
 --
 
 --
--- Index pour la table `Note`
+-- Index pour la table `annonce`
 --
-ALTER TABLE `Note`
-  ADD PRIMARY KEY (`idNote`,`idUtilisateur`,`idProduitService`);
+ALTER TABLE `annonce`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUtilisateur` (`idUtilisateur`);
+
+--
+-- Index pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  ADD PRIMARY KEY (`idCommentaire`,`idUtilisateur`,`idProduitService`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `produit_service`
+-- Index pour la table `note`
 --
-ALTER TABLE `produit_service`
-  ADD PRIMARY KEY (`idProduitService`);
+ALTER TABLE `note`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idAnnonce` (`idAnnonce`);
 
 --
--- Index pour la table `tag`
+-- Index pour la table `tagCategorie`
 --
-ALTER TABLE `tag`
-  ADD PRIMARY KEY (`idTag`);
+ALTER TABLE `tagCategorie`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `tagNote`
+--
+ALTER TABLE `tagNote`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `utilisateur`
@@ -123,27 +159,52 @@ ALTER TABLE `utilisateur`
 --
 
 --
--- AUTO_INCREMENT pour la table `Note`
+-- AUTO_INCREMENT pour la table `annonce`
 --
-ALTER TABLE `Note`
-  MODIFY `idNote` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID de la note';
+ALTER TABLE `annonce`
+  MODIFY `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  MODIFY `idCommentaire` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID du commentaire';
+  MODIFY `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `produit_service`
+-- AUTO_INCREMENT pour la table `note`
 --
-ALTER TABLE `produit_service`
-  MODIFY `idProduitService` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID du Produit/Service';
+ALTER TABLE `note`
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `tag`
+-- AUTO_INCREMENT pour la table `tagCategorie`
 --
-ALTER TABLE `tag`
-  MODIFY `idTag` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID du tag';
+ALTER TABLE `tagCategorie`
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `tagNote`
+--
+ALTER TABLE `tagNote`
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID de l''utilisateur';
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `annonce`
+--
+ALTER TABLE `annonce`
+  ADD CONSTRAINT `fk_id_utilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `note`
+--
+ALTER TABLE `note`
+  ADD CONSTRAINT `fk_id_annonce` FOREIGN KEY (`idAnnonce`) REFERENCES `annonce` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
