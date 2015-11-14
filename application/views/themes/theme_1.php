@@ -45,7 +45,7 @@
                     <button class="btn-menu-top" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Connexion</button>
                     <div class="dropdown-menu dropdown-menu-right stop-prop" role="menu" aria-labelledby="dLabel">
                       <div class="wrapper-form-box">
-                        <h3>Log </h3>
+                        <h3>Connectez-vous :</h3>
                         <form>
                           <div class="form-group">
                             <div class="input-group">
@@ -60,7 +60,8 @@
                             </div>
                           </div>
                           <button type="submit" class="btn btn-primary text-theme-xs mr-8">Connexion</button>
-                          <a href="index.html#" class="text-theme-xs pull-right a-black">Mot de passe oublié ?</a>
+                          <a href="index.html#" class="text-theme-xs pull-right a-black">Mot de passe oublié ?</a><br/>
+                          <a href="index.html#" class="text-theme-xs pull-right a-black">Pas encore inscrit ?</a>
                         </form>
                       </div>
                     </div>
@@ -140,12 +141,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img class="img-responsive" src="<?php echo img_url("logo/logo.png", "theme-img"); ?>"><span style="display: inline-block;">Troc'It Easy</span></a>
+            <a class="navbar-brand" href="<?php echo base_url()."accueil/index"; ?>"><img class="img-responsive" src="<?php echo img_url("logo/logo.png", "theme-img"); ?>"><span style="display: inline-block;">Troc'It Easy</span></a>
           </div>
 
           <div id="navbar" class="navbar-collapse collapse">
 
             <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="<?php echo base_url()."accueil/index"; ?>" role="button" aria-expanded="false">Accueil</a>
+              </li>
               <li class="dropdown">
                 <a href="<?php echo base_url()."accueil/index"; ?>" role="button" aria-expanded="false">Accueil</a>
               </li>
