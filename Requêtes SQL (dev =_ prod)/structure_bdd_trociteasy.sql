@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Sam 14 Novembre 2015 à 11:52
+-- Généré le :  Sam 14 Novembre 2015 à 12:13
 -- Version du serveur :  5.5.42
 -- Version de PHP :  5.6.10
 
@@ -52,6 +52,7 @@ CREATE TABLE `categorie` (
 
 CREATE TABLE `commentaire` (
   `id` smallint(6) unsigned NOT NULL,
+  `idNote` smallint(6) unsigned NOT NULL,
   `commentaire` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -62,7 +63,7 @@ CREATE TABLE `commentaire` (
 --
 
 CREATE TABLE `note` (
-  `id` smallint(6) NOT NULL,
+  `id` smallint(6) unsigned NOT NULL,
   `idAnnonce` smallint(6) unsigned NOT NULL,
   `note` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -85,7 +86,8 @@ CREATE TABLE `tagCategorie` (
 --
 
 CREATE TABLE `tagNote` (
-  `id` smallint(6) NOT NULL,
+  `id` smallint(6) unsigned NOT NULL,
+  `idNote` smallint(6) unsigned NOT NULL,
   `nom` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -131,7 +133,8 @@ ALTER TABLE `categorie`
 -- Index pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idNote` (`idNote`);
 
 --
 -- Index pour la table `note`
@@ -150,7 +153,8 @@ ALTER TABLE `tagCategorie`
 -- Index pour la table `tagNote`
 --
 ALTER TABLE `tagNote`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idNote` (`idNote`);
 
 --
 -- Index pour la table `utilisateur`
@@ -181,7 +185,7 @@ ALTER TABLE `commentaire`
 -- AUTO_INCREMENT pour la table `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `tagCategorie`
 --
@@ -191,7 +195,7 @@ ALTER TABLE `tagCategorie`
 -- AUTO_INCREMENT pour la table `tagNote`
 --
 ALTER TABLE `tagNote`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
@@ -213,6 +217,12 @@ ALTER TABLE `annonce`
 --
 ALTER TABLE `categorie`
   ADD CONSTRAINT `fk_id_tag_categorie` FOREIGN KEY (`idTagCategorie`) REFERENCES `tagCategorie` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD CONSTRAINT `fk_id_note` FOREIGN KEY (`idNote`) REFERENCES `note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `note`
