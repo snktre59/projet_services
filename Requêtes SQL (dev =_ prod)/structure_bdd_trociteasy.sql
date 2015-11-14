@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Sam 14 Novembre 2015 à 11:43
+-- Généré le :  Sam 14 Novembre 2015 à 11:52
 -- Version du serveur :  5.5.42
 -- Version de PHP :  5.6.10
 
@@ -24,6 +24,7 @@ USE `trocItEasy`;
 
 CREATE TABLE `annonce` (
   `id` smallint(6) unsigned NOT NULL,
+  `idCategorie` smallint(6) unsigned NOT NULL,
   `idUtilisateur` smallint(6) unsigned NOT NULL,
   `nom` varchar(255) NOT NULL,
   `description` text NOT NULL,
@@ -38,7 +39,8 @@ CREATE TABLE `annonce` (
 --
 
 CREATE TABLE `categorie` (
-  `id` smallint(6) NOT NULL,
+  `id` smallint(6) unsigned NOT NULL,
+  `idTagCategorie` smallint(6) unsigned NOT NULL,
   `nom` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -72,7 +74,7 @@ CREATE TABLE `note` (
 --
 
 CREATE TABLE `tagCategorie` (
-  `id` smallint(6) NOT NULL,
+  `id` smallint(6) unsigned NOT NULL,
   `nom` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -115,13 +117,15 @@ CREATE TABLE `utilisateur` (
 --
 ALTER TABLE `annonce`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `idUtilisateur` (`idUtilisateur`);
+  ADD KEY `idUtilisateur` (`idUtilisateur`),
+  ADD KEY `idCategorie` (`idCategorie`);
 
 --
 -- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idTagCategorie` (`idTagCategorie`);
 
 --
 -- Index pour la table `commentaire`
@@ -167,7 +171,7 @@ ALTER TABLE `annonce`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `commentaire`
 --
@@ -182,7 +186,7 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT pour la table `tagCategorie`
 --
 ALTER TABLE `tagCategorie`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `tagNote`
 --
@@ -201,7 +205,14 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `annonce`
 --
 ALTER TABLE `annonce`
+  ADD CONSTRAINT `fk_id_categorie` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_utilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD CONSTRAINT `fk_id_tag_categorie` FOREIGN KEY (`idTagCategorie`) REFERENCES `tagCategorie` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `note`
