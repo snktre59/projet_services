@@ -80,8 +80,9 @@ class Layout
             show_404();
         }
         
-        $data["utilisateurCourant"] = $this->utilisateurCourant;
-
+        // $data["utilisateurCourant"] = $this->utilisateurCourant;
+           
+        $data = array_merge($data,$this->var);
         $this->var['output'] .= $this->CI->load->view($page, $data, true);
         if ($theme === TRUE) {
             $this->CI->load->view("./themes/".$this->theme, $this->var);
