@@ -1,6 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Commentaire {
+class Commentaire extends CI_Controller
+{
 	private $id;
 	private $idNote;
 	private $commentaire;

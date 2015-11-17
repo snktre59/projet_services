@@ -8,6 +8,7 @@ class Layout
     private $theme = "theme_1";
     private $racine;
     private $tabMessage = array();
+    public $utilisateurCourant;
 
     /**
      * Constructeur
@@ -16,6 +17,17 @@ class Layout
     {
         // Instance CodeIgniter
         $this->CI = &get_instance();
+        
+        if (! $this->CI->session->userdata("utilisateurCourant")){
+			$this->CI->load->model("utilisateurs_model");
+			
+			$this->utilisateurCourant = $this->CI->utilisateurs_model->instancier_utilisateur("VISITEUR");
+			
+			$this->CI->session->set_userdata("utilisateurCourant", $this->utilisateurCourant);
+		}
+		
+		$this->utilisateurCourant = $this->CI->session->userdata("utilisateurCourant");
+        
         $this->set_theme("theme_1");
         $this->racine = substr($this->CI->router->fetch_class(), 0, 5);
 
@@ -23,6 +35,9 @@ class Layout
         $this->var['output'] = "";
         $this->var['css'] = array();
         $this->var['js'] = array();
+        
+        // Déclaration des vues en sortie
+		$this->var['utilisateurCourant'] = $this->utilisateurCourant;
 
         // Titre par défaut, avec le nom de la méthode et du contrôleur
         $this->var['titre'] = ucfirst($this->CI->router->fetch_method()).' - '.ucfirst($this->CI->router->fetch_class());
@@ -64,6 +79,8 @@ class Layout
         if ( ! file_exists(APPPATH.'/views/'.$page.'.php')) {
             show_404();
         }
+        
+        $data["utilisateurCourant"] = $this->utilisateurCourant;
 
         $this->var['output'] .= $this->CI->load->view($page, $data, true);
         if ($theme === TRUE) {

@@ -1,6 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Annonce{
+class Annonce extends CI_Controller
+{
 	private $id;
 	private $idCategorie;
 	private $idUtilisateur;

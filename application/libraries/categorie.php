@@ -1,6 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Categorie{
+class Categorie extends CI_Controller
+{
 	private $id;
 	private $idTagCategorie = NULL;
 	private $nom = NULL;

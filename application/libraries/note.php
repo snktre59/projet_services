@@ -1,6 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Note {
+class Note extends CI_Controller
+{
 	private $id;
 	private $idAnnonce;
 	private $note;

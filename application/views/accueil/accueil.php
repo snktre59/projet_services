@@ -48,6 +48,7 @@
 							</div>
 							<div class="col-md-3 center">
 								<a class="btn btn-ghost-white btn-lg"><i class="fa fa-search"></i>Rechercher</a>
+								<span><?php var_dump($utilisateurCourant); ?></span>
 							</div>
 						</div>
 					</div>

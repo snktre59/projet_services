@@ -1,6 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class TagNote {
+class TagNote extends CI_Controller
+{
 	private $id;
 	private $idNote;
 	private $nom;
