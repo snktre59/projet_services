@@ -1,21 +1,3 @@
-<div class="section-heading-page">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <h1 class="heading-page text-center-xs">Inscription</h1>
-      </div>
-      <div class="col-sm-6">
-        <ol class="breadcrumb text-right text-center-xs">
-          <li>
-            <a href="<?php echo base_url("accueil/index"); ?>">Accueil</a>
-          </li>
-          <li class="active">Inscription</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="section section-xs section-bottom">
   <div class="container">
     <div class="row mb">

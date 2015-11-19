@@ -47,6 +47,12 @@ class Layout
 
         // Gestion du flash message
         $this->var['tabFlashMessage'] = $this->get_flash_message();
+        
+        // Nom du controller
+        $this->var['controllerName'] = ucfirst($this->CI->router->fetch_class());
+        
+        // Nom de la classe
+        $this->var['className'] = ucfirst($this->CI->router->fetch_method());
 
         // CSS
         $this->ajouter_css("bootstrap.min");
