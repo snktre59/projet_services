@@ -12,7 +12,7 @@ class Utilisateur extends CI_Controller
 	private $registrationDate;
 	private $lastLoginDate;
 	private $groupe;
-	private $adresseIp;
+	private $lastLoginIp;
 	private $tokenId;
 	private $statutCompte;
 	
@@ -41,7 +41,7 @@ class Utilisateur extends CI_Controller
 		$this->registrationDate = $dataUser["registrationDate"];
 		$this->lastLoginDate = $dataUser["lastLoginDate"];
 		$this->groupe = $dataUser["groupe"];
-		$this->adresseIp = $dataUser["adresseIp"];
+		$this->lastLoginIp = $dataUser["lastLoginIp"];
 		// A ajouter au Model
 		$this->tokenId = $dataUser["tokenId"];
 		$this->statutCompte = $dataUser["statutCompte"];
@@ -54,7 +54,7 @@ class Utilisateur extends CI_Controller
 	/*
      * Fonction d'inscription d'un utilisateur
      */
-    public function inscrire($nom, $prenom, $adresseEmail, $motDePasse, $credit, $registrationDate, $lastLoginDate, $groupe, $adresseIp, $tokenId, $statutCompte)
+    public function inscrire($nom, $prenom, $adresseEmail, $motDePasse, $credit, $registrationDate, $lastLoginDate, $groupe, $lastLoginIp, $tokenId, $statutCompte)
 	{
         // Création du tableau contenant les informations à propos de l'utilisateur
 		$tableauUtilisateur = array(
@@ -63,11 +63,11 @@ class Utilisateur extends CI_Controller
 			"prenom"			=>		$prenom,
 			"adresseEmail"		=>		$adresseEmail,
 			"motDePasse"		=>		$motDePasse,
-			"credit"		=>		$credit,
-			"registrationDate"		=>		$registrationDate,
+			"credit"			=>		$credit,
+			"registrationDate"	=>		$registrationDate,
 			"lastLoginDate"		=>		$lastLoginDate,
-			"groupe"		=>		$groupe,
-			"adresseIp"		=>		$adresseIp,
+			"groupe"			=>		$groupe,
+			"lastLoginIp"		=>		$lastLoginIp,
 			"tokenId"			=>		$tokenId,
 			"statutCompte"		=>		"INACTIF"
 		);
@@ -75,6 +75,29 @@ class Utilisateur extends CI_Controller
         // Insertion des données dans la table "utilisateurs"
 		$inscrireUtilisateur = $this->db->insert("utilisateurs", $tableauUtilisateur);
 	}
+	
+	/*
+     * Active le compte d'un utilisateur (Passage du champs statutCompte à "ACTIF")
+     */
+	public function activer_compte($adresse_email, $token_id){
+        $this->CI =& get_instance();
+        
+        return $this->CI->utilisateurs_model->activer_compte($adresse_email, $token_id);
+    }
+    
+	/*
+     * Retourne les données d'un utilisateur
+     */
+    public function connexion_utilisateur($adresse_email, $mot_de_passe){
+        $dataUser = $this->CI->utilisateurs_model->getDataUtilisateurByEmail($adresse_email);
+    }
+    
+	/*
+     * Retourne TRUE si l'utilisateur est connecté sinon FALSE
+     */
+    public function estAuthentifie(){
+        return ($this->registered === TRUE) ? TRUE : FALSE;
+    } 
 	
 	/*
      * Retourne l'ID de l'utilisateur courant

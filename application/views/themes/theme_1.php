@@ -154,15 +154,21 @@
               <li class="dropdown">
                 <a href="<?php echo base_url()."accueil/index"; ?>" role="button" aria-expanded="false">Déposer une annonce</a>
               </li>
-              
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mon Compte</a>
                 <ul class="dropdown-menu dropdown-menu-left" role="menu">
-                  <li><a href="<?php echo base_url()."accueil/index"; ?>">Connexion</a></li>
-                  <li><a href="<?php echo base_url()."accueil/index"; ?>">Inscription</a></li>
-                  <li><a href="<?php echo base_url()."accueil/index"; ?>">Voir mes annonces</a></li>
-                  <li><a href="<?php echo base_url()."accueil/index"; ?>">Voir ma liste de préférences</a></li>
-                  <li><a href="<?php echo base_url()."accueil/index"; ?>">Déconnexion</a></li>
+                  <!-- PARTIES ACCESSIBLES AUX UTILISATEURS NON CONNECTES -->
+                  <?php if(!$utilisateurCourant->estAuthentifie()) { ?>
+                  <li><a href="<?php echo base_url()."utilisateurs/index"; ?>">Connexion</a></li>
+                  <li><a href="<?php echo base_url()."utilisateurs/inscription"; ?>">Inscription</a></li>
+                  <?php } ?>
+                  <!-- PARTIES ACCESSIBLES AUX UTILISATEURS CONNECTES -->
+                  <?php if($utilisateurCourant->estAuthentifie()) { ?>
+                  <li><a href="<?php echo base_url()."utilisateurs/annonces"; ?>">Voir mes annonces</a></li>
+                  <li><a href="<?php echo base_url()."utilisateurs/preferences"; ?>">Voir ma liste de préférences</a></li>
+                  <li><a href="<?php echo base_url()."utilisateurs/deconnexion"; ?>">Déconnexion</a></li>
+                  <?php } ?>
+                  
                 </ul>
               </li>
 

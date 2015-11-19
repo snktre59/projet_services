@@ -37,19 +37,21 @@ class Utilisateurs_Model extends CI_Model
 	 * Ajoute un utilisateur en base de données
 	 * Retour : TRUE si une ligne à été affectée ou FALSE
 	 */
-	public function ajouter_utilisateur($nom, $prenom, $adresseEmail, $motDePasse, $credit, $registrationDate, $lastLoginDate, $groupe, $adresseIp, $tokenId, $statutCompte)
+	public function ajouter_utilisateur($nom, $prenom, $adresseEmail, $motDePasse, $adresseIp, $tokenId)
 	{
+		$this->load->helper("Date");
+		
 		$this->db->set("nom", $nom);
 		$this->db->set("prenom", $prenom);
 		$this->db->set("adresseEmail", $adresseEmail);
 		$this->db->set("motDePasse", $motDePasse);
-		$this->db->set("credit", $credit);
-		$this->db->set("registrationDate", $registrationDate);
-		$this->db->set("lastLoginDate", $lastLoginDate);
-		$this->db->set("groupe", $groupe);
-		$this->db->set("adresseIp", $adresseIp);
+		$this->db->set("credit", "100");
+		$this->db->set("registrationDate", date('Y-m-d H:i:s'));
+		$this->db->set("lastLoginDate", "");
+		$this->db->set("groupe", "UTILISATEUR");
+		$this->db->set("lastLoginIp", $adresseIp);
 		$this->db->set("tokenId", $tokenId);
-		$this->db->set("statutCompte", $statutCompte);
+		$this->db->set("statutCompte", "INACTIF");
 		
 		$this->db->insert($this->tableUtilisateurs);
 		
