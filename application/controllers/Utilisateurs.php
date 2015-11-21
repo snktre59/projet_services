@@ -35,6 +35,7 @@ class Utilisateurs extends CI_Controller {
 		$this->form_validation->set_rules('adresseEmailConfirm', '"Adresse email confirmation"', 'trim|required|encode_php_tags');
 		$this->form_validation->set_rules('motDePasse', '"Mot de passe"', 'trim|required|matches[motDePasseConfirm]|encode_php_tags');
 		$this->form_validation->set_rules('motDePasseConfirm', '"Mot de passe confirmation"', 'trim|required|encode_php_tags');
+		$this->form_validation->set_rules('termesEtConditions', 'Termes', 'callback_accepter_termes');
 		
 		// Si le formulaire est correctement renseigné
 		if($this->form_validation->run())
@@ -107,4 +108,21 @@ class Utilisateurs extends CI_Controller {
 		header('Content-type: application/json');
 		exit(json_encode($response));
 	}
+	
+	
+	function accepter_termes()
+	{
+		//if (isset($_POST['accept_terms_checkbox']))
+        if ($this->input->post('termesEtConditions'))
+		{
+			return TRUE;
+		}
+		else
+		{
+			$error = 'Pour vous inscrire vous devez être d\'accord avec nos conditions.';
+			$this->form_validation->set_message('termesEtConditions', $error);
+			return FALSE;
+		}
+	}
+	
 }

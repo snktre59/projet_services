@@ -14,31 +14,32 @@
             <form id="inscriptionForm" action="<?php echo base_url('utilisateurs/do_inscription'); ?>">
               <div class="form-group">
                 <label for="input-name">Nom : </label>
-                <input type="text" class="form-control" id="input-name" name="nom" placeholder="Username">
+                <input type="text" class="form-control" id="input-name" name="nom" placeholder="Nom" />
               </div>
               <div class="form-group">
                 <label for="first-name">Prénom :</label>
-                <input type="text" class="form-control" id="first-name" name="prenom" placeholder="First Name">
+                <input type="text" class="form-control" id="first-name" name="prenom" placeholder="Prénom" />
               </div>
               <div class="form-group">
                 <label for="inputEmail">Adresse email :</label>
-                <input type="email" class="form-control" id="inputEmail" name="adresseEmail" placeholder="Email">
+                <input type="email" class="form-control" id="inputEmail" name="adresseEmail" placeholder="Adresse email" />
               </div>
       <div class="form-group">
                 <label for="inputEmail">Confirmation de l'adresse email :</label>
-                <input type="email" class="form-control" id="inputEmail" name="adresseEmailConfirm" placeholder="Email">
+                <input type="email" class="form-control" id="inputEmail" name="adresseEmailConfirm" placeholder="Confirmation de l'adresse email" />
               </div>
               <div class="form-group">
                 <label for="inputPassword">Mot de passe :</label>
-                <input type="password" class="form-control" id="inputPassword" name="motDePasse" placeholder="Password">
+                <input type="password" class="form-control" id="inputPassword" name="motDePasse" placeholder="Mot de passe" />
               </div>
       <div class="form-group">
                 <label for="inputPassword">Confirmation du mot de passe :</label>
-                <input type="password" class="form-control" id="inputPassword" name="motDePasseConfirm" placeholder="Password">
+                <input type="password" class="form-control" id="inputPassword" name="motDePasseConfirm" placeholder="Confirmation du mot de passe" />
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox"> J'accepte les <a href="<?php echo base_url()."contact/index"; ?>">termes et les conditions</a></label>
+                  <input type="checkbox" name="termesEtConditions" value="on"/> <span>J'accepte les <a href="<?php echo base_url()."contact/index"; ?>">termes et les conditions</a></span></label><br />
+                  <div class="alert alert-danger" id="termesAlert" style="display:none">Vous devez accepter les termes et conditions pour terminer votre inscription.</div>
               </div>
               <button type="submit" class="btn btn-primary">Register</button>
             </form>
