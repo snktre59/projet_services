@@ -93,5 +93,26 @@ class Utilisateurs_Model extends CI_Model
 			
 			return ($donnees == NULL) ? FALSE : $donnees[0];
 	}
+	
+	/*
+	 * Active le compte d'un utilisateur en fonction de son adresse email et de son token ID
+	 * Paramètres :
+	 * $adresseEmail => Adresse email du compte à activer
+	 * $tokenId => TokenId du compte (vérification)
+	 *
+	 * Retour : TRUE si une ligne à été affectée ou FALSE
+	 */
+	public function activer_compte($adresseEmail, $tokenId){
+		$data = array(
+			"statutCompte" => "ACTIF"
+		);
+		
+		$this->db->where('adresseEmail', $adresseEmail);
+		$this->db->where('tokenId', $tokenId);
+		$this->db->update($this->tableUtilisateurs, $data);
+		$rows = $this->db->affected_rows();
+		
+		return ($rows == 1) ? TRUE : FALSE;
+	}
 		
 }

@@ -159,7 +159,7 @@
                 <ul class="dropdown-menu dropdown-menu-left" role="menu">
                   <!-- PARTIES ACCESSIBLES AUX UTILISATEURS NON CONNECTES -->
                   <?php if(!$utilisateurCourant->estAuthentifie()) { ?>
-                  <li><a href="<?php echo base_url()."utilisateurs/index"; ?>">Connexion</a></li>
+                  <li><a href="<?php echo base_url()."utilisateurs/connexion"; ?>">Connexion</a></li>
                   <li><a href="<?php echo base_url()."utilisateurs/inscription"; ?>">Inscription</a></li>
                   <?php } ?>
                   <!-- PARTIES ACCESSIBLES AUX UTILISATEURS CONNECTES -->
@@ -223,14 +223,20 @@
       </div>
     </div>
     <?php } ?>
-
-    <?php foreach($tabFlashMessage as $flashMessage): ?>
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $flashMessage['message'];?>
+    
+    <div class="container">
+      <!--
+        Warning : exclamation-sign
+        Success : ok-sign
+        Danger : remove-sign
+      -->
+      <?php foreach($tabFlashMessage as $flashMessage): ?>
+        <div class="col-xs-12 alert alert-<?php echo $flashMessage['statut'];?>">
+            <div class="glyphicon glyphicon-<?php echo $flashMessage['icon'];?>" style="font-size:28px;vertical-align: bottom;"></div>
+            <span><?php echo $flashMessage['message'];?></span>
         </div>
-    <?php endforeach; ?>
-
+      <?php endforeach; ?>
+    </div>
     
     <?php echo $output ?>
     <!-- SECTION FOOTER -->

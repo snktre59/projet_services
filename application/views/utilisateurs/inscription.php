@@ -1,7 +1,7 @@
 <div class="section section-xs section-bottom">
   <div class="container">
     <div class="row mb">
-      <div class="col-md-6 col-sm-offset-3">
+      <div class="col-md-6 col-sm-offset-3"  id="pageTitle">
         <h3 class="title-md hr-left text-theme">Inscription</h3>
         <div class="panel panel-primary text-theme">
           <div class="panel-heading">
@@ -37,9 +37,9 @@
                 <input type="password" class="form-control" id="inputPassword" name="motDePasseConfirm" placeholder="Confirmation du mot de passe" />
               </div>
               <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="termesEtConditions" value="on"/> <span>J'accepte les <a href="<?php echo base_url()."contact/index"; ?>">termes et les conditions</a></span></label><br />
-                  <div class="alert alert-danger" id="termesAlert" style="display:none">Vous devez accepter les termes et conditions pour terminer votre inscription.</div>
+                <!--<label>
+                  <input type="checkbox" name="termesEtConditions" value="on"/><span></span></label>-->
+                  <div class="alert alert-info" id="termesAlert">En cliquant sur le bouton "S'inscrire" vous acceptez les <a href="<?php echo base_url()."contact/index"; ?>">termes et les conditions</a> du site.</div>
               </div>
               <button type="submit" class="btn btn-primary">Register</button>
             </form>

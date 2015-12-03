@@ -74,6 +74,7 @@ class Layout
         $this->ajouter_js("page/theme");
         $this->ajouter_js("page/page.home");
         $this->ajouter_js("style-switcher/style-switcher");
+        $this->ajouter_js("jquery.scrollTo.min");
     }
 
     /**
@@ -115,9 +116,9 @@ class Layout
     }
 
     // set_flash_message
-    public function set_flash_message($statut, $message)
+    public function set_flash_message($statut, $message, $icon="")
     {
-        $this->tabMessage[] = array('statut' => $statut, 'message' => $message);
+        $this->tabMessage[] = array('statut' => $statut, 'message' => $message, 'icon' => $icon);
         $this->CI->session->set_flashdata('tabMessage', $this->tabMessage);
     }
 

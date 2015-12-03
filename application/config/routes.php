@@ -52,3 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'accueil';
 $route['404_override'] = 'page_404';
 $route['translate_uri_dashes'] = FALSE;
+
+/*
+ * Routes du frontend
+ */
+$route['utilisateurs/confirmation/(:any)/(:any)'] = "utilisateurs/confirmation/$1/$2";
