@@ -2,8 +2,8 @@
 -- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost:8889
--- Généré le :  Jeu 19 Novembre 2015 à 14:06
+-- Client :  localhost
+-- Généré le :  Ven 04 Décembre 2015 à 10:08
 -- Version du serveur :  5.5.42
 -- Version de PHP :  5.6.10
 
@@ -102,7 +102,7 @@ CREATE TABLE `utilisateur` (
   `nom` varchar(30) NOT NULL COMMENT 'Nom',
   `prenom` varchar(30) NOT NULL COMMENT 'Prénom',
   `adresseEmail` varchar(60) NOT NULL COMMENT 'Adresse email de connexion',
-  `motDePasse` varchar(40) NOT NULL COMMENT 'Mot de passe',
+  `motDePasse` varchar(100) NOT NULL COMMENT 'Mot de passe',
   `credit` int(10) NOT NULL,
   `registrationDate` datetime NOT NULL COMMENT 'Date d''inscription',
   `lastLoginDate` datetime NOT NULL COMMENT 'Date de dernière connexion',
@@ -110,7 +110,7 @@ CREATE TABLE `utilisateur` (
   `lastLoginIp` varchar(30) NOT NULL COMMENT 'Adresse IP de dernière connexion',
   `tokenId` varchar(90) NOT NULL COMMENT 'Identifiant unique de l''utilisateur',
   `statutCompte` enum('ACTIF','INACTIF') NOT NULL COMMENT 'Statut du compte actif/inactif'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `utilisateur`
@@ -118,7 +118,7 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `adresseEmail`, `motDePasse`, `credit`, `registrationDate`, `lastLoginDate`, `groupe`, `lastLoginIp`, `tokenId`, `statutCompte`) VALUES
 (1, '', '', 'VISITEUR', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'VISITEUR', '', '', 'INACTIF'),
-(7, 'PAMART', 'Nicolas', 'pamart.nicolas@free.fr', '$2y$10$/q60I6LXd1nY.GEprJ4e3uMXwAhAN0JyW', 100, '2015-11-19 12:54:38', '0000-00-00 00:00:00', 'UTILISATEUR', '::1', 'e1d31e4f869e58ea63b92ecd10d85cb4', 'INACTIF');
+(41, 'PAMART', 'Nicolas', 'pamart.nicolas@free.fr', '$2y$10$8PPi64IkSkfTOZiDC1bim.vfwCFz9nAFkpmbhO0uv2N9wqHp91iQC', 100, '2015-12-03 10:24:43', '0000-00-00 00:00:00', 'UTILISATEUR', '::1', '91f1e156f3926ec3bdb9bec8749ef61e', 'ACTIF');
 
 --
 -- Index pour les tables exportées
@@ -210,7 +210,7 @@ ALTER TABLE `tagNote`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID de l''utilisateur',AUTO_INCREMENT=8;
+  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID de l''utilisateur',AUTO_INCREMENT=42;
 --
 -- Contraintes pour les tables exportées
 --
