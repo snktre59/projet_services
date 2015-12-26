@@ -57,3 +57,4 @@ $route['translate_uri_dashes'] = FALSE;
  * Routes du frontend
  */
 $route['utilisateurs/confirmation/(:any)/(:any)'] = "utilisateurs/confirmation/$1/$2";
+$route['utilisateurs/recuperation/(:any)/(:any)'] = "utilisateurs/recuperation/$1/$2";

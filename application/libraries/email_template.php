@@ -54,6 +54,44 @@ class Email_template
 		// Envoi du mail
 		return $this->CI->email->send();
 	}	
+    
+    /*
+	 * Fonction d'envoi du mail d'inscription
+	 */
+	public function mot_de_passe_oublie_validation($expediteur, $nom, $destinataires, $adresseEmail, $tokenRecovery, $sujet, $message, $cc = "", $bcc = ""){
+		
+		// Configuration de la librairie
+		$config["mailtype"] = "html";
+		
+		// Chargement de la librairie d'envoi de mails
+		$this->CI->load->library('email', $config);
+		
+		$this->CI->email->initialize($config);
+		
+		// Définition des paramètres de l'email
+		// Expéditeur
+		$this->CI->email->from($expediteur, $nom);
+		
+		// Destinataires
+		$this->CI->email->to($destinataires); 
+		
+		// Destinataires en copie
+		$this->CI->email->cc($cc); 
+		
+		// Destinataires en copie carbone 
+		$this->CI->email->bcc($bcc); 
+		
+		// Sujet du mail
+		$this->CI->email->subject($sujet);
+		
+		$message = "Vous vous êtes inscrit sur le site <a href='undershift.fr'>undershift.fr</a> et nous vous en remercions. Pour confirmer votre inscription merci de cliquer sur <a href='".base_url()."utilisateurs/recuperation/".urlencode($adresseEmail)."/".$tokenRecovery."'>ce lien</a>.";
+		
+		// Corps du mail
+		$this->CI->email->message($this->generate_template("Bienvenue !", $message));	
+		
+		// Envoi du mail
+		return $this->CI->email->send();
+	}	
 	
 	/*
 	 * Génération du template par defaut

@@ -57,6 +57,23 @@ class Utilisateurs_Model extends CI_Model
 		
 		return ($this->db->affected_rows() != 1) ? FALSE : TRUE;
 	}
+    
+    /*
+	 * Ajoute un token pour la récupération de mot de passe
+	 * Retour : TRUE si une ligne à été affectée ou FALSE
+	 */
+	public function ajouter_token_recovery($adresseEmail, $tokenRecovery)
+	{	
+        $data = array(
+			"tokenRecovery" => $tokenRecovery
+		);
+		
+		$this->db->where('adresseEmail', $adresseEmail);
+		$this->db->update($this->tableUtilisateurs, $data);
+		$rows = $this->db->affected_rows();
+		
+		return ($rows == 1) ? TRUE : FALSE;
+	}
 	
 	/*
 	 * Récupération des données du compte utilisateur par son adresse email
@@ -67,6 +84,24 @@ class Utilisateurs_Model extends CI_Model
 	 */
 	public function getDataUtilisateurByEmail($adresseEmail){
 		$this->db->select("*")
+				->where('adresseEmail', $adresseEmail);
+		
+		$resultat = $this->db->get($this->tableUtilisateurs);
+		
+		$donnees = $resultat->result_array();
+		
+		return ($donnees == NULL) ? FALSE : $donnees[0];
+	}
+    
+    /*
+	 * Récupération des données du compte utilisateur par son adresse email
+	 * Paramètres :
+	 * $adresse_email => Adresse email du compte
+	 *
+	 * Retour : $donnees du compte ou FALSE
+	 */
+	public function getTokenRecoveryByEmail($adresseEmail){
+		$this->db->select("tokenRecovery")
 				->where('adresseEmail', $adresseEmail);
 		
 		$resultat = $this->db->get($this->tableUtilisateurs);
@@ -109,6 +144,48 @@ class Utilisateurs_Model extends CI_Model
 		
 		$this->db->where('adresseEmail', $adresseEmail);
 		$this->db->where('tokenId', $tokenId);
+		$this->db->update($this->tableUtilisateurs, $data);
+		$rows = $this->db->affected_rows();
+		
+		return ($rows == 1) ? TRUE : FALSE;
+	}
+    
+    /*
+	 * Met à jour le mot de passe de l'utilisateur
+	 * Paramètres :
+	 * $adresseEmail => Adresse email du compte à activer
+	 * $tokenRecovery => Token de la récupération (vérification)
+     * $motDePasse => Mot de passe crypté de l'utilisateur
+	 *
+	 * Retour : TRUE si une ligne à été affectée ou FALSE
+	 */
+	public function updateUserPassword($adresseEmail, $tokenRecovery, $motDePasse){
+		$data = array(
+			"motDePasse" => $motDePasse
+		);
+		
+		$this->db->where('adresseEmail', $adresseEmail);
+		$this->db->where('tokenRecovery', $tokenRecovery);
+		$this->db->update($this->tableUtilisateurs, $data);
+		$rows = $this->db->affected_rows();
+		
+		return ($rows == 1) ? TRUE : FALSE;
+	}
+    
+    /*
+	 * Met à jour token à vide
+	 * Paramètres :
+	 * $adresseEmail => Adresse email du compte
+	 *
+	 * Retour : TRUE si une ligne à été affectée ou FALSE
+	 */
+	public function viderTokenRecovery($adresseEmail, $tokenRecovery){
+		$data = array(
+			"tokenRecovery" => ""
+		);
+		
+		$this->db->where('adresseEmail', $adresseEmail);
+		$this->db->where('tokenRecovery', $tokenRecovery);
 		$this->db->update($this->tableUtilisateurs, $data);
 		$rows = $this->db->affected_rows();
 		

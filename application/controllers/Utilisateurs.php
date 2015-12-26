@@ -248,5 +248,116 @@ class Utilisateurs extends CI_Controller {
 		// Redirection et affichage du message de confirmation
 		redirect("accueil/index");
 	}
+    
+    function mot_de_passe_oublie(){
+        // Chargement des bibliothèques
+		$this->load->library('form_validation');
+        
+        $this->load->library('email_template');
+		
+		// Chargement des modèles
+		$this->load->model("utilisateurs_model");
+	 
+	 	// Définition des règles de champs
+		$this->form_validation->set_rules('adresseEmail', '"Adresse Email"', 'trim|required|valid_email|encode_php_tags');
+	
+		if ($this->form_validation->run())
+		{
+			// Récupération des variables postées
+			$adresseEmail = $this->input->post('adresseEmail');
+            $tokenRecovery = md5(microtime(TRUE)*100000);
+            
+            if($this->utilisateurs_model->ajouter_token_recovery($adresseEmail, $tokenRecovery) == TRUE){
+                // Si l'ajout du token s'est bien déroulé envoi de l'email
+                $message = "Pour confirmer la demande de récupération de mot de passe cliquez sur <a href='base_url(utilisateurs/recuperation/".$adresseEmail."/".$tokenRecovery.")'>ce lien</a>.<br />
+					A bientôt sur troc-it-easy.fr !<br/>
+					L\'équipe Troc\'It Easy.";
+                $this->email_template->mot_de_passe_oublie_validation("noreply@troc-it-easy.fr", "TROC'IT EASY", $adresseEmail, $adresseEmail, $tokenRecovery, "Récupérez votre mot de passe", $message);
+            }
+            
+            // Définition du message de confirmation et du statut
+			// Ajout d'un message de confirmation
+			$this->layout->set_flash_message("success", "Un email vous à été envoyé avec les instructions vous permettant de récupérer votre mot de passe.");
+            redirect('accueil');
+            
+        } else {
+            
+            $this->layout->view('utilisateurs/mot_de_passe_oublie');
+        }
+        
+    }
+    
+    function recuperation($adresseEmail, $tokenRecovery){
+        $this->load->model('utilisateurs_model');
+        if(empty($adresseEmail) || empty($tokenRecovery)){
+            $this->layout->set_flash_message("danger", "Votre adresse mail ou votre jeton à mal été transmis à la page, merci de vérifier le lien que vous avez reçu.");
+            redirect('accueil');
+        } else {
+            $adresseEmail = urldecode($adresseEmail);
+        
+            $tokenRecoveryBdd = $this->utilisateurs_model->getTokenRecoveryByEmail($adresseEmail);
+
+            if($tokenRecovery != $tokenRecoveryBdd["tokenRecovery"]){
+                $this->layout->set_flash_message("danger", "Le jeton de demande de récupération de mot de passe n'est pas valide pour ce compte. Veuillez réitérer votre demande.", "remove-sign");
+                redirect('accueil');
+            } else {
+                $data['adresseEmail'] = $adresseEmail;
+                $data['tokenRecovery'] = $tokenRecovery;
+
+                $this->layout->view('utilisateurs/recuperation', $data);
+            }
+        }
+        
+        
+    }
+    
+    function recuperation_validation(){
+        // Chargement des bibliothèques
+		$this->load->library('form_validation');
+        
+        $this->load->library('email_template');
+		
+		// Chargement des modèles
+		$this->load->model("utilisateurs_model");
+	 
+	 	// Définition des règles de champs
+        $this->form_validation->set_rules('adresseEmail', '"Adresse email"', 'trim|required|encode_php_tags');
+		$this->form_validation->set_rules('tokenRecovery', '"Jeton"', 'trim|required|encode_php_tags');
+        $this->form_validation->set_rules('motDePasse', '"Mot de passe"', 'trim|required|matches[motDePasseConfirm]|encode_php_tags');
+        $this->form_validation->set_rules('motDePasseConfirm', '"Mot de passe confirmation"', 'trim|required|encode_php_tags');
+	
+		if ($this->form_validation->run())
+		{
+            // Récupération des données du formulaire
+            $adresseEmail = $this->input->post('adresseEmail');
+            $tokenRecovery = $this->input->post('tokenRecovery');
+            $motDePasse = $this->input->post('motDePasse');
+            $motDePasseConfirm = $this->input->post('motDePasseConfirm');
+            $tokenRecoveryBdd = $this->utilisateurs_model->getTokenRecoveryByEmail($adresseEmail);
+            
+            if($tokenRecovery != $tokenRecoveryBdd['tokenRecovery']){
+                $this->layout->set_flash_message("danger", "Le jeton de demande de récupération de mot de passe n'est pas valide pour ce compte. Veuillez réitérer votre demande.", "remove-sign");
+            redirect('accueil');
+            } else {
+                $motDePasse = password_hash($motDePasse, PASSWORD_BCRYPT);
+                if($this->utilisateurs_model->updateUserPassword($adresseEmail, $tokenRecovery, $motDePasse) == TRUE) {
+                    if($this->utilisateurs_model->viderTokenRecovery($adresseEmail, $tokenRecovery)) {
+                        $this->layout->set_flash_message("success", "Le mot de passe de votre compte à été changé, vous pouvez vous connecté dès à présent.", "ok-sign");
+                        redirect('accueil');
+                    } else {
+                        $this->layout->set_flash_message("danger", "Problème de réinitialisation du jeton.");
+                        redirect('accueil');
+                    }
+                } else {
+                    $this->layout->set_flash_message("danger", "Une erreur est survenue, votre mot de passe n'a pas été changé (Jeton invalide ou adresse email non existante).", "remove-sign");
+                    redirect('accueil');
+                }
+            }
+        } else {
+            $data['adresseEmail'] = $adresseEmail;
+            $data['tokenRecovery'] = $tokenRecovery;
+            $this->layout->view('utilisateurs/recuperation', $data);
+        }
+    }
 	
 }

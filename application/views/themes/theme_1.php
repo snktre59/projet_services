@@ -164,8 +164,9 @@
                   <?php } ?>
                   <!-- PARTIES ACCESSIBLES AUX UTILISATEURS CONNECTES -->
                   <?php if($utilisateurCourant->estAuthentifie()) { ?>
-                  <li><a href="<?php echo base_url()."utilisateurs/annonces"; ?>">Voir mes annonces</a></li>
-                  <li><a href="<?php echo base_url()."utilisateurs/preferences"; ?>">Voir ma liste de préférences</a></li>
+                  <li><a href="<?php echo base_url()."annonces/mes_annonces"; ?>">Voir mes annonces</a></li>
+                  <li><a href="<?php echo base_url()."annonces/ajouter"; ?>">Ajouter une annonce</a></li>
+                  <li><a href="<?php echo base_url()."annonces/preferences"; ?>">Voir ma liste de préférences</a></li>
                   <li><a href="<?php echo base_url()."utilisateurs/deconnexion"; ?>">Déconnexion</a></li>
                   <?php } ?>
                   
@@ -233,7 +234,7 @@
       <?php foreach($tabFlashMessage as $flashMessage): ?>
         <div class="col-xs-12 alert alert-<?php echo $flashMessage['statut'];?>">
             <div class="glyphicon glyphicon-<?php echo $flashMessage['icon'];?>" style="font-size:28px;vertical-align: bottom;"></div>
-            <span><?php echo $flashMessage['message'];?></span>
+            <span style="vertical-align: middle;"><?php echo $flashMessage['message'];?></span>
         </div>
       <?php endforeach; ?>
     </div>

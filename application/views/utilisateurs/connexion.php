@@ -22,7 +22,7 @@
                       <input type="checkbox"> Se souvenir de moi ?</label>
                   </div>
                   <button type="submit" class="btn btn-primary text-theme-xs">Se connecter</button>
-                  <a href="login-option-2.html#" class="text-theme-xs pull-right a-black">Mot de passe oublié ?</a>
+                  <a href="<?php echo base_url("utilisateurs/mot_de_passe_oublie"); ?>" class="text-theme-xs pull-right a-black">Mot de passe oublié ?</a>
                 </form>
               </div>
             </div>
