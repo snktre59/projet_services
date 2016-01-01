@@ -32,7 +32,7 @@
                       </select>
                     </div>
                   </div>
-              </fieldset>
+              </fieldset>    
             
               <fieldset>
                   <legend>Localisation</legend>
@@ -65,25 +65,25 @@
                   <div class="form-group">
                     <label for="adresseEmail" class="control-label col-sm-2">Adresse email :</label>
                     <div class="col-sm-10">
-                      <input type="email" id="adresseEmail" name="adresseEmail" class="form-control" placeholder="Adresse email" />
+                      <input type="email" id="adresseEmail" name="adresseEmail" class="form-control" placeholder="Adresse email" value="<?php echo $utilisateurCourant->getAdresseEmail(); ?>" disabled/>
                     </div>
                   </div>
-                  <!-- TELEPHONE -->
-                  <div class="form-group">
+                  <!-- TELEPHONE (A voir)-->
+                  <!--<div class="form-group">
                     <label for="telephone" class="control-label col-sm-2">Téléphone :</label>
                     <div class="col-sm-10">
                       <input type="number" name="telephone" class="form-control" placeholder="Téléphone" />
                     </div>
-                  </div>
+                  </div>-->
                   <!-- MASQUER NUMERO DE TELEPHONE -->
-                  <div class="form-group">
+                  <!--<div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <div class="checkbox">
                         <label>
                           <input type="checkbox" /> Masquer mon numéro de téléphone</label>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
               </fieldset>
               
               <fieldset>
@@ -105,18 +105,47 @@
                   </div>
               </fieldset>
                 
+                <div class="row row-code">
+                    <div class="col-sm-4">
+                      <div class="content-box bordered">
+                        <a href="feature-content-box.html#" class="img-box text-theme-sm">
+                          <h3 class="caption-box">Photo 1</h3>
+                          <img class="img-responsive" src="<?php echo img_url('placeholder/1050x750.png');?>" alt="img-theme">
+                        </a>
+                        <h3 class="title-sm text-theme-sm">Example Title</h3>
+                        <p class="text-theme-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempor facilisis odio at malesuada.</p>
+                        <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="feature-content-box.html#">Read More</a>
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                      <div class="content-box bordered">
+                        <a href="feature-content-box.html#" class="img-box text-theme-sm">
+                          <h3 class="caption-box">Photo 2</h3>
+                          <img class="img-responsive" src="<?php echo img_url('placeholder/1050x750.png');?>" alt="img-theme">
+                        </a>
+                        <h3 class="title-sm text-theme-sm">Example Title</h3>
+                        <p class="text-theme-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempor facilisis odio at malesuada.</p>
+                        <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="feature-content-box.html#">Read More</a>
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                      <div class="content-box bordered">
+                        <a href="feature-content-box.html#" class="img-box text-theme-sm">
+                          <h3 class="caption-box">Photo 3</h3>
+                          <img class="img-responsive" src="<?php echo img_url('placeholder/1050x750.png');?>" alt="img-theme">
+                        </a>
+                        <h3 class="title-sm text-theme-sm">Example Title</h3>
+                        <p class="text-theme-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempor facilisis odio at malesuada.</p>
+                          <input class="btn btn-primary btn-tiny btn-sm text-theme-sm" type="file" />
+                      </div>
+                    </div>
+                </div>
                 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> Remember me</label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
               </div>
             </form>
